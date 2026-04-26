@@ -1,32 +1,42 @@
-# pot-app-translate-plugin-deepseek
+# pot-app-translate-plugin-deepseek-next
 
-DeepSeek翻译插件 - 一个为pot-app开发的翻译插件
-
-## 简介
-这是一个基于DeepSeek API的翻译插件，支持多语言翻译，提供高质量的翻译结果。
-
-## 前置要求
-- [pot-app](https://github.com/pot-app/pot-app) - 请先下载并安装pot-app
-- [deepseek API开放平台](https://platform.deepseek.com/usage)- 需要在DeepSeek官网申请API密钥
+一个基于 [Deepseek](https://platform.deepseek.com/) 的 [Pot](https://github.com/pot-app/pot-app) 外部翻译插件，由 [pot-app-translate-plugin-deepseek](https://github.com/Tzulao55/pot-app-translate-plugin-deepseek) 修改而来
 
 ## 功能特点
-- 支持两种模型选择：deepseek-chat和deepseek-reasoner
-- 支持多种语言之间的互译
-- 提供专业、流畅的翻译结果
 
-## 安装方法
-1. 在pot-app中点击"偏好设置"
-2. 选择"服务设置"
-3. 点击"翻译-添加外部插件"
-4. 选择本插件的发布包进行安装
+- 支持 `deepseek-v4-flash`、`deepseek-v4-pro` 模型
+- 支持单独切换思考模式
 
-## 配置说明
-1. 选择翻译模型（deepseek-chat或deepseek-reasoner）
-2. 输入你的DeepSeek API密钥
+## 使用前准备
 
-## 使用说明
-安装并配置完成后，在pot-app的翻译引擎列表中选择"DeepSeek"即可使用。
+- 安装 [Pot](https://github.com/pot-app/pot-app)
+- 在 [DeepSeek 开放平台](https://platform.deepseek.com/api_keys) 申请 API Key
 
-## 注意事项
-- 请妥善保管你的API密钥
-- 翻译服务需要联网使用
+## 插件安装
+
+1. 下载 [Releases](https://github.com/Redns/pot-app-translate-plugin-deepseek-next/releases) 中以 `.potext` 结尾的安装包
+
+2. 打开 Pot > 服务设置 > 添加外部插件 > 安装外部插件
+
+3. 点击添加服务至翻译列表，配置模型、思考模式和 api key
+
+   - deepseek-v4-pro 和 deepseek-v4-flash 的对比如下图所示，数据来源于 [deepseek](https://mp.weixin.qq.com/s/8bxXqS2R8Fx5-1TLDBiEDg)
+
+     |       模型        | 参数 | 激活 | 预训练数据 | 上下文长度 | 输出长度  | **百万 tokens 输入<br />（缓存命中）** | **百万 tokens 输入<br />（缓存未命中）** | **百万 tokens 输出** |
+     | :---------------: | :--: | :--: | :--------: | :--------: | :-------: | :------------------------------------: | :--------------------------------------: | :------------------: |
+     | deepseek-v4-flash | 284B | 13B  |    32T     |     1M     | 最大 384K |               **0.2元**                |                 **1元**                  |       **2元**        |
+     |  deepseek-v4-pro  | 1.6T | 49B  |    33T     |     1M     | 最大 384K |                **1元**                 |                 **3元**                  |       **6元**        |
+
+   - [思考模式](https://api-docs.deepseek.com/zh-cn/guides/thinking_mode)：在输出最终回答之前，模型会先输出一段思维链内容，以提升最终答案的准确性
+
+   - [api key](https://platform.deepseek.com/api_keys)
+
+## 继续开发
+
+安装包实际上是一个 **包含 main.js、info.json 和 *.svg 的 zip 压缩包**，可通过本地压缩工具压缩后修改后缀为 `.poxext`。本代码也提供 js 代码快速构建安装包
+
+```bash
+npm run build
+```
+
+执行后会在 `dist/` 目录生成 `plugin.com.krins.deepseek.next.potext`

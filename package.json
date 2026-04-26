@@ -1,0 +1,8 @@
+{
+  "name": "pot-app-translate-plugin-deepseek-next",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "build": "node scripts/build-potext.js"
+  }
+}
